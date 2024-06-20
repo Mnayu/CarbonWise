@@ -35,9 +35,6 @@ def script():
 left, middle, right = st.columns([2,3.5,2])
 main, comps , result = middle.tabs([" ", " ", " "])
 
-# with open("./style/main.md", "r", encoding="utf-8") as main_page:
-#     main.markdown(f"""{main_page.read()}""")
-
 _,but,_ = main.columns([1,2,1])
 if but.button("Calculate Your Carbon Footprint!", type="primary"):
     click_element('tab-1')
@@ -143,13 +140,20 @@ if resultbutton.button(" ", type = "secondary"):
     tab_result.image(chart(model,ss, sample_df,prediction), use_column_width="auto")
     click_element('tab-2')
 
-pop_button = """<button id = "button-17" class="button-17" role="button"> ❔ Did You Know</button>"""
+pop_button = """
+<style>
+.button-17:focus {
+    outline: none !important;
+}
+</style>
+<button id="button-17" class="button-17" role="button" style="background-color: #4CAF50; color: white;"> ❓ Did You Know</button>
+"""
 _,home,_ = comps.columns([1,2,1])
 _,col2,_ = comps.columns([1,10,1])
 col2.markdown(pop_button, unsafe_allow_html=True)
 pop = """
 <div id="popup" class="DidYouKnow_root">
-<p class="DidYouKnow_title TextNew" style="font-size: 20px;"> ❔ Did you know</p>
+<p class="DidYouKnow_title TextNew" style="font-size: 20px;"> ❓ Did you know</p>
     <p id="popupText" class="DidYouKnow_content TextNew"><span>
     Each year, human activities release over 40 billion metric tons of carbon dioxide into the atmosphere, contributing to climate change.
     </span></p>
@@ -161,14 +165,11 @@ if home.button("🏡"):
     click_element('tab-0')
 _,resultmid,_ = result.columns([1,2,1])
 
-tree_count = round(prediction / 411.4)
-tab_result.markdown(f"""You owe nature <b>{tree_count}</b> tree{'s' if tree_count > 1 else ''} monthly. <br> {f"<a href='https://www.tema.org.tr/en/homepage' id = 'button-17' class='button-17' role='button'> 🌳 Proceed to offset 🌳</a>" if tree_count > 0 else ""}""",  unsafe_allow_html=True)
-
 if resultmid.button("  ", type="secondary"):
     click_element('tab-1')
 
-# with open("./style/footer.html", "r", encoding="utf-8") as footer:
-#     footer_html = f"""{footer.read()}"""
-#     st.markdown(footer_html, unsafe_allow_html=True)
+with open("./style/footer.html", "r", encoding="utf-8") as footer:
+    footer_html = f"""{footer.read()}"""
+    st.markdown(footer_html, unsafe_allow_html=True)
 
 script()

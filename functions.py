@@ -120,14 +120,15 @@ def hesapla(model,ss, sample_df):
 
 def chart(model, scaler,sample_df, prediction):
     p = hesapla(model, scaler,sample_df)
-    bbox_props = dict(boxstyle="round", facecolor="white", edgecolor="white", alpha=0.7)
+    bbox_props = dict(boxstyle="round", facecolor="lightgray", edgecolor="lightgray", alpha=0.7)
+
 
     plt.figure(figsize=(10, 10))
     patches, texts = plt.pie(x=p.values(),
                              labels=p.keys(),
                              explode=[0.03] * 4,
                              labeldistance=0.75,
-                             colors=["#29ad9f", "#1dc8b8", "#99d9d9", "#b4e3dd" ], shadow=True,
+                              colors=["#a8d5ba", "#b8e1c6", "#c8edcf", "#d8f9db"], shadow=True,
                              textprops={'fontsize': 20, 'weight': 'bold', "color": "#000000ad"})
     for text in texts:
         text.set_horizontalalignment('center')
@@ -137,28 +138,24 @@ def chart(model, scaler,sample_df, prediction):
 
     background = Image.open("./media/default.png")
     draw = ImageDraw.Draw(background)
-    font1 = ImageFont.truetype(font="./style/ArchivoBlack-Regular.ttf", size=50)
-    font = ImageFont.truetype(font="./style/arialuni.ttf", size=50)
-    draw.text(xy=(320, 50), text=f"  How big is your\nCarbon Footprint?", font=font1, fill="#039e8e", stroke_width=1, stroke_fill="#039e8e")
-    draw.text(xy=(370, 250), text=f"Monthly Emission \n\n   {prediction:.0f} kgCO₂e", font=font, fill="#039e8e", stroke_width=1, stroke_fill="#039e8e")
+    font1 = ImageFont.truetype(font="./style/Roboto-Black.ttf", size=40)
+    font = ImageFont.truetype(font="./style/OpenSans-Regular.ttf", size=40)
+    draw.text(xy=(250, 50), text=f"  Here's your Carbon Footprint:", font=font1, fill="#039e8e")
+    draw.text(xy=(325, 100), text=f"Emission every month \n         {prediction:.0f} kgCO2e", font=font, fill="#039e8e", stroke_width=1, stroke_fill="#295419")
     data_back = io.BytesIO()
     background.save(data_back, "PNG")
     background = Image.open(data_back).convert('RGBA')
     piechart = Image.open(data)
-    ayak = Image.open("./media/ayak.png").resize((370, 370))
+    ayak = Image.open("./media/carbon-footprint.png").resize((370, 370))
     bg_width, bg_height = piechart.size
     ov_width, ov_height = ayak.size
     x = (bg_width - ov_width) // 2
     y = (bg_height - ov_height) // 2
     piechart.paste(ayak, (x, y), ayak.convert('RGBA'))
-    background.paste(piechart, (40, 200), piechart.convert('RGBA'))
+    background.paste(piechart, (40, 100), piechart.convert('RGBA'))
     data2 = io.BytesIO()
     background.save(data2, "PNG")
     background = Image.open(data2).resize((700, 700))
     data3 = io.BytesIO()
     background.save(data3, "PNG")
     return data3
-
-
-
-
