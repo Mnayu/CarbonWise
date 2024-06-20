@@ -18,7 +18,7 @@ def get_base64(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-background = get_base64("./media/background_min.jpg")
+background = get_base64("./media/bg.png")
 icon2 = get_base64("./media/icon2.png")
 icon3 = get_base64("./media/icon3.png")
 
@@ -35,8 +35,8 @@ def script():
 left, middle, right = st.columns([2,3.5,2])
 main, comps , result = middle.tabs([" ", " ", " "])
 
-with open("./style/main.md", "r", encoding="utf-8") as main_page:
-    main.markdown(f"""{main_page.read()}""")
+# with open("./style/main.md", "r", encoding="utf-8") as main_page:
+#     main.markdown(f"""{main_page.read()}""")
 
 _,but,_ = main.columns([1,2,1])
 if but.button("Calculate Your Carbon Footprint!", type="primary"):
@@ -164,8 +164,8 @@ tab_result.markdown(f"""You owe nature <b>{tree_count}</b> tree{'s' if tree_coun
 if resultmid.button("  ", type="secondary"):
     click_element('tab-1')
 
-with open("./style/footer.html", "r", encoding="utf-8") as footer:
-    footer_html = f"""{footer.read()}"""
-    st.markdown(footer_html, unsafe_allow_html=True)
+# with open("./style/footer.html", "r", encoding="utf-8") as footer:
+#     footer_html = f"""{footer.read()}"""
+#     st.markdown(footer_html, unsafe_allow_html=True)
 
 script()

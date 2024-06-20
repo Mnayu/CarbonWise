@@ -108,8 +108,8 @@ body {{
     button[data-testid = "baseButton-secondary"]{{width: 100%;}}
     div[data-testid = "stApp"]{{background: None; color: black;}}
     div[id^=tabs-bui][id$=-tabpanel-0] > div> div > div > div > div[class = "stMarkdown"] {{padding: 20px; border-radius: 2rem; background: rgba(255,255,255,0.7);}}
-    div[id^=tabs-bui][id$=-tabpanel-1] > div > div > div > div > div[class = "st-ae"] {{padding: 20px; border-radius: 2rem; background: rgba(255,255,255,0.7);}}
-    div[id^=tabs-bui][id$=-tabpanel-2] > div > div > div > div > div[class = "st-ae"] {{padding: 20px; border-radius: 2rem; background: rgba(255,255,255,0.7);}}
+    div[id^=tabs-bui][id$=-tabpanel-1] > div > div > div > div > div[class = "st-ae"] {{padding: 20px; border-radius: 2rem; background: rgba(255,255,255,0.7);border: 5px solid #4a9a60;}}
+    div[id^=tabs-bui][id$=-tabpanel-2] > div > div > div > div > div[class = "st-ae"] {{padding: 20px; border-radius: 2rem; background: rgba(255,255,255,0.7);border: 5px solid #4a9a60;}}
     div[id^=tabs-bui][id$=-tabpanel-2] > div > div > div > div > div > div[id^=tabs-bui][id$=-tabpanel-0] > div> div > div > div > div[class = "stMarkdown"]{{background: rgba(255,255,255,0);}}
     div[data-testid  = "column"] > div > div> div > div > div > div >p {{text-align: center;}}
     div[data-testid  = "stButton"] {{text-align: center;}}
