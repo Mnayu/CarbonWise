@@ -42,7 +42,7 @@ _,but,_ = main.columns([1,2,1])
 if but.button("Calculate Your Carbon Footprint!", type="primary"):
     click_element('tab-1')
 
-tab1, tab2, tab3, tab4, tab5 = comps.tabs(["👴 Personal","🚗 Travel","🗑️ Waste","⚡ Energy","💸 Consumption"])
+tab1, tab2, tab3, tab4, tab5, tab6 = comps.tabs(["👴 Personal","🚗 Travel","🗑️ Waste","⚡ Energy","💸 Consumption", "🏢 Office"])
 tab_result,_ = result.tabs([" "," "])
 
 def component():
@@ -97,6 +97,8 @@ def component():
     grocery_bill = tab5.slider('Monthly grocery spending in $', 0, 500, 0)
     clothes_monthly = tab5.slider('How many clothes do you buy monthly?', 0, 30, 0)
 
+    office_hours = tab6.slider('How many hours spent in office?', 0, 12, 0)
+
     data = {'Body Type': body_type,
             "Sex": sex,
             'Diet': diet,
@@ -114,6 +116,7 @@ def component():
             "How Many New Clothes Monthly": clothes_monthly,
             "How Long Internet Daily Hour": internet_daily,
             "Energy efficiency": energy_efficiency
+            # "Office Hours": office_hours
             }
     data.update({f"Cooking_with_{x}": y for x, y in
                  dict(zip(for_cooking, np.ones(len(for_cooking)))).items()})
